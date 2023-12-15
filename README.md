@@ -20,3 +20,14 @@ The copper industry deals with less complex data related to sales and pricing, b
 
 ##Data
 The dataset contains information on copper prices and various features relevant to the manufacturing industry. The data will be preprocessed, and features will be engineered to train the machine learning models.
+
+Requirements
+This project requires the following libraries to be installed:
+
+1. NumPy
+
+2. Pandas
+
+3. Scikit-learn
+
+4. Streamlit
