@@ -1,5 +1,3 @@
-##packages
-
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -78,15 +76,15 @@ with tab1:
         if submit_button and flag==0:
             
             import pickle
-            with open(r'C:\Users\HP\OneDrive\Desktop\copper\model.pkl', 'rb') as file:
+            with open(r"model.pkl", 'rb') as file:
                 loaded_model = pickle.load(file)
-            with open(r'C:\Users\HP\OneDrive\Desktop\copper\scaler.pkl', 'rb') as f:
+            with open(r'scaler.pkl', 'rb') as f:
                 scaler_loaded = pickle.load(f)
 
-            with open(r"C:\Users\HP\OneDrive\Desktop\copper\t.pkl", 'rb') as f:
+            with open(r"t.pkl", 'rb') as f:
                 t_loaded = pickle.load(f)
 
-            with open(r"C:\Users\HP\OneDrive\Desktop\copper\s.pkl", 'rb') as f:
+            with open(r"s.pkl", 'rb') as f:
                 s_loaded = pickle.load(f)
 
             new_sample= np.array([[np.log(float(quantity_tons)),application,np.log(float(thickness)),float(width),country,float(customer),int(product_ref),item_type,status]])
@@ -133,13 +131,13 @@ with tab2:
              
         if csubmit_button and cflag==0:
             import pickle
-            with open(r"source/cmodel.pkl", 'rb') as file:
+            with open(r"cmodel.pkl", 'rb') as file:
                 cloaded_model = pickle.load(file)
 
-            with open(r'source/cscaler.pkl', 'rb') as f:
+            with open(r'cscaler.pkl', 'rb') as f:
                 cscaler_loaded = pickle.load(f)
 
-            with open(r"source/ct.pkl", 'rb') as f:
+            with open(r"ct.pkl", 'rb') as f:
                 ct_loaded = pickle.load(f)
 
             # Predict the status for a new sample
@@ -149,7 +147,10 @@ with tab2:
             new_sample = np.concatenate((new_sample[:, [0,1,2, 3, 4, 5, 6,7]], new_sample_ohe), axis=1)
             new_sample = cscaler_loaded.transform(new_sample)
             new_pred = cloaded_model.predict(new_sample)
-            if new_pred==1:
+            #st.write(new_pred)
+            if new_pred.all()==1:
                 st.write('## :green[The Status is Won] ')
             else:
                 st.write('## :red[The status is Lost] ')
+                
+st.write( f'<h6 style="color:rgb(0, 153, 153,0.35);">App Created by NAVIN N</h6>', unsafe_allow_html=True )  
